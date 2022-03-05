@@ -18,7 +18,7 @@
 export APP_NAME=robot-shop
 export INDEX_TYPE=changerisk
 
-if [[  $VERSION =~ "" ]]; then
+if [[  $VERSION == "" ]]; then
     echo "   ------------------------------------------------------------------------------------------------------------------------------"
     echo "   🔬 Setting Version to default 3.3"
     echo "   ------------------------------------------------------------------------------------------------------------------------------"
@@ -27,7 +27,7 @@ fi
 
 
 
-if [[  $WAIOPS_NAMESPACE =~ "" ]]; then
+if [[  $WAIOPS_NAMESPACE == "" ]]; then
     # Get Namespace from Cluster 
     echo "   ------------------------------------------------------------------------------------------------------------------------------"
     echo "   🔬 Getting Installation Namespace"
