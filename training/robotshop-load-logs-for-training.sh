@@ -18,7 +18,7 @@
 export APP_NAME=robot-shop
 export INDEX_TYPE=logs
 
-echo "::$VERSION"
+
 if [[  $VERSION == "" ]]; then
     echo "   ------------------------------------------------------------------------------------------------------------------------------"
     echo "   🔬 Setting Version to default 3.3"
