@@ -1,0 +1,7 @@
+t_uid,metric_name,resource_name,group_name,attributes,mr_id
+cfd95b7e-3bc7-4006-a4a8-a73a79c71255,latency.max,mysql,Latency,"{'group': 'Latency', 'node': 'mysql'}",7b1e5d5b-7ee4-3a52-9104-482c2e8e362b
+cfd95b7e-3bc7-4006-a4a8-a73a79c71255,latency.mean,mysql,Latency,"{'group': 'Latency', 'node': 'mysql'}",e0eeded5-2005-364c-a146-9c4dc93e7ecc
+cfd95b7e-3bc7-4006-a4a8-a73a79c71255,memory.peak,mysql,MemoryUsage,"{'group': 'MemoryUsage', 'node': 'mysql'}",3af00e63-cb80-3143-9293-75f625d2ca54
+cfd95b7e-3bc7-4006-a4a8-a73a79c71255,memory.used,mysql,MemoryUsage,"{'group': 'MemoryUsage', 'node': 'mysql'}",fa00a473-5d83-3a6d-98c4-4c3b2a1e5650
+cfd95b7e-3bc7-4006-a4a8-a73a79c71255,tps.max,mysql,TransactionsPerSecond,"{'group': 'TransactionsPerSecond', 'node': 'mysql'}",4ba509fc-2841-3864-b86c-41b630537919
+cfd95b7e-3bc7-4006-a4a8-a73a79c71255,tps.mean,mysql,TransactionsPerSecond,"{'group': 'TransactionsPerSecond', 'node': 'mysql'}",6ebea892-4b6f-3e46-9e32-d1467bfb972c
