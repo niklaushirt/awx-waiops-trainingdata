@@ -77,6 +77,11 @@ echo "   -----------------------------------------------------------------------
 echo "  "
 echo "  "
 
+echo "   ------------------------------------------------------------------------------------------------------------------------------"
+echo "   🔎 Check Cassandra tables"
+echo "   ------------------------------------------------------------------------------------------------------------------------------"
+    oc exec -ti aiops-topology-cassandra-0 -- bash -c "/opt/ibm/cassandra/bin/cqlsh --ssl -u \$CASSANDRA_USER -p \$CASSANDRA_PASS -e \"SELECT COUNT(*) FROM tararam.dt_metric_value;\""
+    oc exec -ti aiops-topology-cassandra-0 -- bash -c "/opt/ibm/cassandra/bin/cqlsh --ssl -u \$CASSANDRA_USER -p \$CASSANDRA_PASS -e \"SELECT * FROM tararam.md_metric_resource;\""
 
 echo "   ------------------------------------------------------------------------------------------------------------------------------"
 echo "   🚚 Load dump into Cassandra tables"
@@ -90,7 +95,7 @@ echo "  "
 echo "   ------------------------------------------------------------------------------------------------------------------------------"
 echo "   🔎 Check Cassandra tables"
 echo "   ------------------------------------------------------------------------------------------------------------------------------"
-    oc exec -ti aiops-topology-cassandra-0 -- bash -c "/opt/ibm/cassandra/bin/cqlsh --ssl -u \$CASSANDRA_USER -p \$CASSANDRA_PASS -e \"SELECT * FROM tararam.dt_metric_value;\""
+    oc exec -ti aiops-topology-cassandra-0 -- bash -c "/opt/ibm/cassandra/bin/cqlsh --ssl -u \$CASSANDRA_USER -p \$CASSANDRA_PASS -e \"SELECT COUNT(*) FROM tararam.dt_metric_value;\""
     oc exec -ti aiops-topology-cassandra-0 -- bash -c "/opt/ibm/cassandra/bin/cqlsh --ssl -u \$CASSANDRA_USER -p \$CASSANDRA_PASS -e \"SELECT * FROM tararam.md_metric_resource;\""
 
 
