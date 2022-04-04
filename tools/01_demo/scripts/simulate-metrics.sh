@@ -118,8 +118,15 @@ do
             ADD_SECONDS=$(($ADD_SECONDS+$TIME_INCREMENT_SECONDS))
 
             # Get timestamp in ELK format
-            export MY_TIMESTAMP=$(date -v "+"$ADD_SECONDS"S" "$DATE_FORMAT")"$ADD_MSECONDS_STRING"
-            export my_timestamp_readable=$(date -v "+"$ADD_SECONDS"S" "$DATE_FORMAT_READABLE")
+            if [[  "$(uname)" = Linux ]]; then
+                  export MY_TIMESTAMP=$(date --date="$ADD_SECONDS seconds" "$DATE_FORMAT")"$ADD_MSECONDS_STRING"
+                  export my_timestamp_readable=$(date --date="$ADD_SECONDS seconds" "$DATE_FORMAT_READABLE")
+            else
+                  export MY_TIMESTAMP=$(date -v "+"$ADD_SECONDS"S" "$DATE_FORMAT")"$ADD_MSECONDS_STRING"
+                  export my_timestamp_readable=$(date -v "+"$ADD_SECONDS"S" "$DATE_FORMAT_READABLE")
+            fi
+
+
 
 
             for value in "${MY_RES_IDS[@]}"
