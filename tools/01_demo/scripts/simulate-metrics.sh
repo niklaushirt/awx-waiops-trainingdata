@@ -118,7 +118,7 @@ do
             ADD_SECONDS=$(($ADD_SECONDS+$TIME_INCREMENT_SECONDS))
 
             # Get timestamp in ELK format
-            if [[  "$(uname)" = Linux ]]; then
+            if [  "$(uname)" = Linux ]; then
                   export MY_TIMESTAMP=$(date --date="$ADD_SECONDS seconds" "$DATE_FORMAT")"$ADD_MSECONDS_STRING"
                   export my_timestamp_readable=$(date --date="$ADD_SECONDS seconds" "$DATE_FORMAT_READABLE")
             else
