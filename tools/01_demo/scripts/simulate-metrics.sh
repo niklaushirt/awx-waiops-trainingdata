@@ -115,6 +115,12 @@ do
 
             ADD_SECONDS=$(($ADD_SECONDS+($TIME_INCREMENT_MINUTES*60)))
             export act_timestamp_readable=$(date -v "+"$ADD_SECONDS"S" "$DATE_FORMAT_READABLE")
+            if [[  "$(uname)" == "Linux" ]]; then
+                  export act_timestamp_readable=$(date --date="$ADD_SECONDS seconds" "$DATE_FORMAT_READABLE")
+
+            else
+                  export act_timestamp_readable=$(date -v "+"$ADD_SECONDS"S" "$DATE_FORMAT_READABLE")
+            fi
 
 
             echo "        ♻️  ITERATION: $ITERATIONS-$BUNDLE_ITERATIONS     at "$act_timestamp_readable"   -     Seconds skew "$ADD_SECONDS
