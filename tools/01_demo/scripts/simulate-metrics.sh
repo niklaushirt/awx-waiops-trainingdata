@@ -96,6 +96,12 @@ export  ITERATIONS=0
 
 # mysql-predictive,MemoryUsageMax,MemoryUsage,FIX, VARIATION
 
+if [[  "$(uname)" == "Linux" ]]; then
+echo "Time/Date for Linux"
+else
+echo "Time/Date for Mac"
+fi
+
 # Loop until CTRL-C
 while true
 do
