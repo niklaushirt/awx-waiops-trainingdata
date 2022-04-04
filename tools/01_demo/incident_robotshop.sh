@@ -144,7 +144,7 @@ if [ "${OS}" == "darwin" ]; then
       export DATE_FORMAT_EVENTS="-v-60M +%Y-%m-%dT%H:%M"
 else
       # Suppose we're on a Linux flavour
-      export DATE_FORMAT_EVENTS="-d-60min +%Y-%m-%dT%H:%M:%S" 
+      export DATE_FORMAT_EVENTS="-d-60min +%Y-%m-%dT%H:%M" 
 fi
 
 
