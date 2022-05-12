@@ -56,10 +56,35 @@ if [ ! -x "$(command -v unzip)" ]; then
 fi
 
 
+export MERIC_FILES=$(ls -1 ./robot-shop/$VERSION/$INDEX_TYPE/ | grep "dt_metric_value")	
+if [[ $MERIC_FILES == "" ]] ;	
+then	
+      echo "           ❗ No Metric Dump files found"	
+      echo "           ❗    No Metric Dump files found to ingest in path ./robot-shop/$VERSION/$INDEX_TYPE/"	
+      echo "           ❗    Please place them in the directory."	
+      echo "           ❌ Aborting..."	
+      exit 1	
+else	
+      echo "     ✅ Dump Files:                 OK"	
+fi	
+echo "     "	
+
+
+#--------------------------------------------------------------------------------------------------------------------------------------------	
+#  Check Credentials	
+#--------------------------------------------------------------------------------------------------------------------------------------------	
+
+echo "   ------------------------------------------------------------------------------------------------------------------------------"
+echo "   🗄️  Indexes to be loaded from ./robot-shop/$VERSION/$INDEX_TYPE/"	
+echo "   ------------------------------------------------------------------------------------------------------------------------------"
+ls -1 ./robot-shop/$VERSION/$INDEX_TYPE/ | grep "dt_metric_value"	 | sed 's/^/          /'
+echo "       "	
+echo "       "	
+
 
 
 echo "   ------------------------------------------------------------------------------------------------------------------------------"
-echo "   💾 Copy Logs into Pod"
+echo "   💾 Copy Files into Pod"
 echo "   ------------------------------------------------------------------------------------------------------------------------------"
 echo "      👉 Version    : $VERSION"
 echo "  "
@@ -84,13 +109,23 @@ echo "   -----------------------------------------------------------------------
     oc exec -ti -n $WAIOPS_NAMESPACE aiops-topology-cassandra-0 -- bash -c "/opt/ibm/cassandra/bin/cqlsh --ssl -u \$CASSANDRA_USER -p \$CASSANDRA_PASS -e \"SELECT * FROM tararam.md_metric_resource;\""
 
 echo "   ------------------------------------------------------------------------------------------------------------------------------"
-echo "   🚚 Load dump into Cassandra tables"
+echo "   🚚 Load data structure dump into Cassandra table tararam.md_metric_resource"
 echo "   ------------------------------------------------------------------------------------------------------------------------------"
-    oc exec -ti -n $WAIOPS_NAMESPACE aiops-topology-cassandra-0 -- bash -c "/opt/ibm/cassandra/bin/cqlsh --ssl -u \$CASSANDRA_USER -p \$CASSANDRA_PASS -e \"copy tararam.dt_metric_value from '/tmp/tararam.dt_metric_value.csv' with header=true;\""
     oc exec -ti -n $WAIOPS_NAMESPACE aiops-topology-cassandra-0 -- bash -c "/opt/ibm/cassandra/bin/cqlsh --ssl -u \$CASSANDRA_USER -p \$CASSANDRA_PASS -e \"copy tararam.md_metric_resource from '/tmp/tararam.md_metric_resource.csv' with header=true;\""
 echo "  "
 echo "  "
 
+
+for actFile in $(ls -1 ./robot-shop/$VERSION/$INDEX_TYPE/ | grep "dt_metric_value");
+do
+    echo "   ------------------------------------------------------------------------------------------------------------------------------"
+    echo "   🚚 Load data values dump into Cassandra table tararam.dt_metric_value from $actFile"
+    echo "   ------------------------------------------------------------------------------------------------------------------------------"
+        oc exec -ti -n $WAIOPS_NAMESPACE aiops-topology-cassandra-0 -- bash -c "/opt/ibm/cassandra/bin/cqlsh --ssl -u \$CASSANDRA_USER -p \$CASSANDRA_PASS -e \"copy tararam.dt_metric_value from '/tmp/"$actFile"' with header=true;\""
+    echo "  "
+    echo "  "
+
+done
 
 echo "   ------------------------------------------------------------------------------------------------------------------------------"
 echo "   🔎 Check Cassandra tables"
