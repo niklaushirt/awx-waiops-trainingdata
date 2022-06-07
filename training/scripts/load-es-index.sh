@@ -136,8 +136,6 @@ fi
 echo "     "
 
 
-sleep 60000
-
 
 export NODE_TLS_REJECT_UNAUTHORIZED=0
 
