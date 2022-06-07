@@ -82,7 +82,7 @@ echo "  📥 Indexes will count up to approx 320000 and 390000 respectively."
 echo "  "
 echo "***************************************************************************************************************************************************"
 
-while true; do oc port-forward statefulset/iaf-system-elasticsearch-es-aiops 9200; done>/dev/null 2>&1&
+while true; do oc port-forward  -n $WAIOPS_NAMESPACE statefulset/iaf-system-elasticsearch-es-aiops 9200; done>/dev/null 2>&1&
 
 
 echo ""

@@ -119,6 +119,7 @@ echo "     ---------------------------------------------------------------------
 export existingIndexes=$(curl -s -k -u $username:$password -XGET https://localhost:9200/_cat/indices)
 
 
+
 if [[ $existingIndexes == "" ]] ;
 then
     echo "        ❗ Please start port forward in separate terminal."
@@ -135,7 +136,7 @@ fi
 echo "     "
 
 
-
+sleep 60000
 
 
 export NODE_TLS_REJECT_UNAUTHORIZED=0
